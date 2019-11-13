@@ -91,7 +91,7 @@ export default {
   methods: {
     townChange(e){
       console.log('e:', e)
-      this.index = e.mp.detail.value;
+      this.townIdx = e.mp.detail.value;
     },
     checkinChange(e){
       console.log('date:', e.mp.detail)

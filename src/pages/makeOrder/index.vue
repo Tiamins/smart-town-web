@@ -10,14 +10,31 @@
             <div class="valid-time">{{item.validTime}}前可使用</div>
             <div class="price"><b class="price-unit">￥</b>{{item.price}}</div>
           </div>
-          <div class="count">
-            <div class="title">购买数量</div>
-            
-          </div>
         </div>
+        <van-divider />
+        <div class="count">
+          <div class="title">购买数量</div>
+          <div class="counter">
+            <button :class="decreValid ? btnClass[0] : btnClass[1]" :disabled="decreValid" @click="decrement">-</button>
+            <div class="count-val">{{count}}</div>
+            <button :class="increValid ? btnClass[0] : btnClass[1]" :disabled="increValid" @click="increment">+</button>
+          </div>
+        </div>   
       </div>
-      <div class="info visitor">
-        <div class=""></div>
+      <div class="info phone">
+        <div class="title">联系方式</div>
+        <van-divider />
+        <div class="detail">
+          <van-field
+            :value="telephone"
+            required
+            clearable
+            label="手机号"
+            icon="question-o"
+            placeholder="请输入"
+            @clickIcon="onClickIcon"
+          />
+        </div>
       </div>
       <div class="info submit"></div>
     </div>    
@@ -29,7 +46,15 @@ export default {
   data(){
     return {
       detail: {},
-      item: {},
+      item: {
+        fullName: '东夷海洋馆成人票',
+        validTime: '2020-01-30',
+        price: 120,
+      },
+      increValid: false,
+      decreValid: true,
+      btnClass: ['counter-btn disabled', 'counter-btn active'],
+      count: 1,
       orderType,
       orderList: [
         {oid: '0', name: '东夷海洋馆成人票', headIcon: '/static/images/sea4.jpg', totalPrice: '200.00', num: '2', status: 1, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
@@ -43,7 +68,24 @@ export default {
     }
   },
   methods: {
-    
+    decrement(){
+      this.count--;
+      if (this.count === 1) {
+        this.decreValid = true;
+      }
+    },
+    increment(){
+      this.count++;
+      if (this.count > 1) {
+        this.decreValid = false;
+      }
+      if (this.count === 10) {
+        this.increValid = true;
+      }
+    },
+    onClickIcon(){
+      console.log('hell')
+    }
   },
   async mounted() {
     console.log('params:', this.$root.$mp.query);
@@ -53,69 +95,87 @@ export default {
 <style lang="less" scoped>
 @import '../../style/base.less';
 .wrap{
-  background-image: linear-gradient(#409EFF,#cddef0)
+  background-image: linear-gradient(#409EFF,#cddef0);
+  height: 100%;
+  letter-spacing: 2rpx;
+  color: #4f4f4f;
 }
-.order-type{
-  margin: 0;
-  padding: 0;
+.main{
+  padding: 20rpx;
 }
-.order-list{
-  margin-top: 20rpx;
+.info{
+  background-color: #fff;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+  padding: 20rpx 40rpx;
+  .title{
+    font-size: 32rpx;
+    font-weight: 700;
+    height: 60rpx;
+    line-height: 60rpx;
+    letter-spacing: 4rpx;
+  }
 }
-.order-item{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  .order-main{
+.detail{
+  font-size: 28rpx;
+  font-weight: 500;
+}
+.valid{
+  .detail{
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .valid-time{
+      margin-top: 10rpx;
+    }
+    .price{
+      display: flex;
       flex-direction: row;
-      .head-icon{
-        width: 100rpx;
-        height: 100rpx;
-        image{
-          width: 100%;
-          height: 100%;
-          border-radius: 10rpx;
-        }
+      font-size: 30rpx;
+      color: #f60;
+      font-weight: 700;
+      .price-unit{
+        font-size: 20rpx;
+        margin-top: 10rpx;
       }
-      .order-info{
-        margin-left: 20rpx;
-        overflow: hidden;
-        .info-detail{
-          margin-bottom: 10rpx;
-          font-size: 24rpx;
-        }
-        .info-name{
-          color: #4f4f4f;
-          font-size: 30rpx;
-          font-weight: 500;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          max-width: 400rpx;
-        }
-        .info-num, .info-total{
-          color: #afafaf;
-        }
-      }
-    }
-   .order-tip{
-    .tip-info{
-      margin-bottom: 20rpx;
-      color: #afafaf;
-      font-size: 28rpx;
-      text-align: center;
-    }
-    .tip-action{
-      width: 120rpx;
-      height: 60rpx;
-      font-size: 28rpx;
-      background-color: #409EFF;
-      text-align: center;
-      line-height: 60rpx;
-      color: #fff;
-      border-radius: 120rpx;
     }
   }
 }
+.count{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .counter{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .counter-btn{
+        width: 120rpx;
+        height: 60rpx;
+        font-size: 28rpx;
+        background-color: #409EFF;
+        text-align: center;
+        line-height: 60rpx;
+        color: #fff;
+        border-radius: 120rpx;
+      }
+      .active{
+        background-color: #409EFF;
+        color: #fff;
+      }
+      .disabled{
+        background-color: rgb(190, 193, 196);
+        color: rgb(79, 81, 83);
+      }
+      .count-val{
+        margin: 0 20rpx;
+        height: 60rpx;
+        line-height: 60rpx;
+        width: 60rpx;
+        text-align: center;
+      }
+    }
+}
+
+
 </style>
