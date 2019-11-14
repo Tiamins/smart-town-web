@@ -10,6 +10,7 @@
         "pages/index/main",
         "pages/myStar/main",
         "pages/myAddress/main",
+        "pages/addressMap/main",
         "pages/order/main",
         "pages/orderDetail/main",
         "pages/makeOrder/main",

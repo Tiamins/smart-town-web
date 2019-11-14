@@ -1,3 +1,7 @@
+import QQMap from '../../../static/map/qqmap-wx-jssdk.js'
+const qqmapsdk = new QQMap({
+  key: 'BS7BZ-PQ56F-UGMJF-NMJZN-FR7F6-E5FED'
+})
 const townMap = [
   {id: 0, name: '东夷小镇', type: '0'},
   // {id: 0, name: '东夷小镇'},
@@ -80,4 +84,5 @@ export {
  townMap,
  hotelStar,
  hotelPrice,
+ qqmapsdk,
 }

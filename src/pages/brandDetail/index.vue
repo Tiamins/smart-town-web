@@ -4,68 +4,7 @@
     <div class="divider"></div>
     <packageList :packageInfo="packageInfo" :detail="detail"/>
     <div class="divider"></div>
-    <!-- <div class="comment-conatiner">
-      <div class="comment-head">
-        <div class="comment-cell">
-          <van-cell :title="cellTitle" is-link link-type="navigateTo" url="/pages/comment/index"/>
-        </div>
-        <div class="comment-type">
-          <van-tabs type="card" color="#afafaf">
-            <van-tab title="全部">
-
-            </van-tab>
-            <van-tab title="最新">
-
-            </van-tab>
-            <van-tab title="晒图评价">
-
-            </van-tab>
-          </van-tabs>
-        </div>
-      </div>
-      <div class='comment-list' >
-        <block v-for="(item, index) in commentList" :key="index">
-          <div class="comment-item" v-if="index < 3">
-            <div class='avatar-info'>
-              <image :src='item.avatarUrl' mode="aspectFill"/>
-            </div>
-            <div class='main-info'>
-              <div class='name-info'>{{item.userName}}</div>
-              <div class='score-date'>
-                <div class="score">
-                  <van-rate
-                    readonly
-                    :value="item.score"
-                    size="15"
-                    allow-half
-                    color="#F90"
-                    void-color="#eee"
-                    void-icon="star"
-                    :change="onScoreChange"
-                  />
-                </div>
-                <div class='date'>{{item.commentTime}}</div>
-              </div>
-              <div class='comment-info'>
-                <div :class='detailClass[visible]'>{{item.comment}}</div>
-                <div v-if="item.picUrls.length > 0" class='pic-info'>
-                  <van-grid :border="borderShow" gutter="5" column-num="4">
-                    <van-grid-item use-slot v-for="(pic, idx) in item.picUrls" :key="idx">
-                      <image v-if="idx < 4" style="width: 140rpx; height: 140rpx;" mode="aspectFill" :src='pic.url'  @click='imgPreview(index,idx)'/>
-                    </van-grid-item>  
-                  </van-grid>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div v-if="index < commentList.length-1">
-            <van-divider />
-          </div>
-        </block>
-      </div>
-      <van-cell title="查看全部用户评价" is-link :value="cellValue" />
-    </div> -->
-     <CommentList :commentList="commentList" :type="0" :category="detail.category" :id="detail.id" />
+    <CommentList :commentList="commentList" :type="0" :category="detail.category" :id="detail.id" />
     <div class="divider"></div>
      <div class="main">
        <div class="recommend">推荐</div>

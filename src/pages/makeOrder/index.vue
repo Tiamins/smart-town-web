@@ -28,15 +28,22 @@
           <van-field
             :value="telephone"
             required
+            name="telephone"
             clearable
+            type="tel"
             label="手机号"
-            icon="question-o"
             placeholder="请输入"
-            @clickIcon="onClickIcon"
           />
         </div>
       </div>
-      <div class="info submit"></div>
+    </div>
+    <div class="submit">
+      <div class="total-price">
+        <b class="price-unit">总价￥</b>{{item.price * count}}
+      </div>
+      <div class="submit-order" @click="submitOrder">
+        提交订单
+      </div>
     </div>    
   </div>
 </template>
@@ -57,7 +64,7 @@ export default {
       count: 1,
       orderType,
       orderList: [
-        {oid: '0', name: '东夷海洋馆成人', headIcon: '/static/images/sea4.jpg', totalPrice: '200.00', num: '2', status: 1, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
+        {oid: '0', name: '东夷海洋馆成人票', headIcon: '/static/images/sea4.jpg', totalPrice: '200.00', num: '2', status: 1, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
         {oid: '0', name: '悦湾大酒店大床房', headIcon: '/static/images/hotel3.jpeg', totalPrice: '500.00', num: '1', status: 2, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
         {oid: '0', name: '金沙滩学生票', headIcon: '/static/images/beach1.jpeg', totalPrice: '100.00', num: '4', status: 3, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
         {oid: '0', name: '宽板凳火锅四人套餐', headIcon: '/static/images/hotpot.jpg', totalPrice: '360.00', num: '1', status: 4, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
@@ -79,12 +86,12 @@ export default {
       if (this.count > 1) {
         this.decreValid = false;
       }
-      if (this.count === 10) {
+      if (this.count === 100) {
         this.increValid = true;
       }
     },
-    onClickIcon(){
-      console.log('hell')
+    submitOrder(){
+      
     }
   },
   async mounted() {
@@ -95,8 +102,13 @@ export default {
 <style lang="less" scoped>
 @import '../../style/base.less';
 .wrap{
+  position: fixed;
   background-image: linear-gradient(#409EFF,#cddef0);
   height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   letter-spacing: 2rpx;
   color: #4f4f4f;
 }
@@ -150,21 +162,22 @@ export default {
       flex-direction: row;
       justify-content: space-between;
       .counter-btn{
-        width: 120rpx;
+        width: 100rpx;
         height: 60rpx;
-        font-size: 28rpx;
+        font-size: 34rpx;
         background-color: #409EFF;
         text-align: center;
-        line-height: 60rpx;
+        line-height: 55rpx;
         color: #fff;
-        border-radius: 120rpx;
+        border-radius: 50rpx;
+        padding: 0rpx;
       }
       .active{
         background-color: #409EFF;
         color: #fff;
       }
       .disabled{
-        background-color: rgb(190, 193, 196);
+        background-color: rgb(171, 206, 241);
         color: rgb(79, 81, 83);
       }
       .count-val{
@@ -175,6 +188,37 @@ export default {
         text-align: center;
       }
     }
+}
+.submit{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100rpx;
+  align-items: center;
+  align-items: center;
+  padding: 20rpx;
+  background: #fff;
+  .total-price{
+    display: flex;
+    flex-direction: row;
+    font-size: 34rpx;
+    color: #f60;
+    font-weight: 700;
+    .price-unit{
+      font-size: 28rpx;
+      margin-top: 6rpx;
+    }
+  }
+  .submit-order{
+    width: 280rpx;
+    height: 80rpx;
+    font-size: 34rpx;
+    background-color: #f90;
+    text-align: center;
+    line-height: 80rpx;
+    color: #fff;
+    border-radius: 120rpx;
+  }
 }
 
 
