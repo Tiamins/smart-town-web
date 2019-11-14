@@ -57,7 +57,7 @@ export default {
       count: 1,
       orderType,
       orderList: [
-        {oid: '0', name: '东夷海洋馆成人票', headIcon: '/static/images/sea4.jpg', totalPrice: '200.00', num: '2', status: 1, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
+        {oid: '0', name: '东夷海洋馆成人', headIcon: '/static/images/sea4.jpg', totalPrice: '200.00', num: '2', status: 1, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
         {oid: '0', name: '悦湾大酒店大床房', headIcon: '/static/images/hotel3.jpeg', totalPrice: '500.00', num: '1', status: 2, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
         {oid: '0', name: '金沙滩学生票', headIcon: '/static/images/beach1.jpeg', totalPrice: '100.00', num: '4', status: 3, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
         {oid: '0', name: '宽板凳火锅四人套餐', headIcon: '/static/images/hotpot.jpg', totalPrice: '360.00', num: '1', status: 4, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
