@@ -31,7 +31,7 @@
       </div>
       <van-divider />
       <div class="address-contact">
-        <div class="address">
+        <div class="address" @click="getMap">
           <van-icon name="map-marked" size="20px" color="#afafaf"/>
           <div class="address-detail">{{detail.address}}</div>
         </div>
@@ -44,6 +44,8 @@
 
 <script>
 // import { brandType } from '../constants/index'
+import { qqmapsdk } from '../../components/constants/index'
+
 export default {
   props: ['detail'],
   data() {
@@ -63,10 +65,23 @@ export default {
       this.collected = (this.collected === 0) ? 1 : 0;
     },
     handlePhone(){
-    wx.makePhoneCall({
-      phoneNumber: this.detail.phone,
-    })
-  },
+      wx.makePhoneCall({
+        phoneNumber: this.detail.phone,
+      })
+    },
+    getMap(){
+      qqmapsdk.geocoder({
+        address: this.detail.address,
+        success: function(res){
+          wx.navigateTo({
+            url: `/pages/addressMap/main?location=${res.result.location}`
+          })
+        },
+        fail: function(error){
+          console.log(error)
+        }
+      })
+    }
   },
   onShareAppMessage(res) {
     if (res.from !== 'button') { 
@@ -78,7 +93,6 @@ export default {
       imageUrl: this.detail.headIcon,
     }
   },
- 
 }
 </script>
 

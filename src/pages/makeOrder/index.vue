@@ -10,16 +10,40 @@
             <div class="valid-time">{{item.validTime}}前可使用</div>
             <div class="price"><b class="price-unit">￥</b>{{item.price}}</div>
           </div>
-          <div class="count">
-            <div class="title">购买数量</div>
-            
+        </div>
+        <van-divider />
+        <div class="count">
+          <div class="title">购买数量</div>
+          <div class="counter">
+            <button :class="decreValid ? btnClass[0] : btnClass[1]" :disabled="decreValid" @click="decrement">-</button>
+            <div class="count-val">{{count}}</div>
+            <button :class="increValid ? btnClass[0] : btnClass[1]" :disabled="increValid" @click="increment">+</button>
           </div>
+        </div>   
+      </div>
+      <div class="info phone">
+        <div class="title">联系方式</div>
+        <van-divider />
+        <div class="detail">
+          <van-field
+            :value="telephone"
+            required
+            name="telephone"
+            clearable
+            type="tel"
+            label="手机号"
+            placeholder="请输入"
+          />
         </div>
       </div>
-      <div class="info visitor">
-        <div class=""></div>
+    </div>
+    <div class="submit">
+      <div class="total-price">
+        <b class="price-unit">总价￥</b>{{item.price * count}}
       </div>
-      <div class="info submit"></div>
+      <div class="submit-order" @click="submitOrder">
+        提交订单
+      </div>
     </div>    
   </div>
 </template>
@@ -29,7 +53,15 @@ export default {
   data(){
     return {
       detail: {},
-      item: {},
+      item: {
+        fullName: '东夷海洋馆成人票',
+        validTime: '2020-01-30',
+        price: 120,
+      },
+      increValid: false,
+      decreValid: true,
+      btnClass: ['counter-btn disabled', 'counter-btn active'],
+      count: 1,
       orderType,
       orderList: [
         {oid: '0', name: '东夷海洋馆成人票', headIcon: '/static/images/sea4.jpg', totalPrice: '200.00', num: '2', status: 1, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
@@ -43,7 +75,24 @@ export default {
     }
   },
   methods: {
-    
+    decrement(){
+      this.count--;
+      if (this.count === 1) {
+        this.decreValid = true;
+      }
+    },
+    increment(){
+      this.count++;
+      if (this.count > 1) {
+        this.decreValid = false;
+      }
+      if (this.count === 100) {
+        this.increValid = true;
+      }
+    },
+    submitOrder(){
+      
+    }
   },
   async mounted() {
     console.log('params:', this.$root.$mp.query);
@@ -53,69 +102,124 @@ export default {
 <style lang="less" scoped>
 @import '../../style/base.less';
 .wrap{
-  background-image: linear-gradient(#409EFF,#cddef0)
-}
-.order-type{
-  margin: 0;
-  padding: 0;
-}
-.order-list{
-  margin-top: 20rpx;
-}
-.order-item{
+  position: fixed;
+  background-image: linear-gradient(#409EFF,#cddef0);
+  height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  .order-main{
+  letter-spacing: 2rpx;
+  color: #4f4f4f;
+}
+.main{
+  padding: 20rpx;
+}
+.info{
+  background-color: #fff;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+  padding: 20rpx 40rpx;
+  .title{
+    font-size: 32rpx;
+    font-weight: 700;
+    height: 60rpx;
+    line-height: 60rpx;
+    letter-spacing: 4rpx;
+  }
+}
+.detail{
+  font-size: 28rpx;
+  font-weight: 500;
+}
+.valid{
+  .detail{
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .valid-time{
+      margin-top: 10rpx;
+    }
+    .price{
+      display: flex;
       flex-direction: row;
-      .head-icon{
-        width: 100rpx;
-        height: 100rpx;
-        image{
-          width: 100%;
-          height: 100%;
-          border-radius: 10rpx;
-        }
+      font-size: 30rpx;
+      color: #f60;
+      font-weight: 700;
+      .price-unit{
+        font-size: 20rpx;
+        margin-top: 10rpx;
       }
-      .order-info{
-        margin-left: 20rpx;
-        overflow: hidden;
-        .info-detail{
-          margin-bottom: 10rpx;
-          font-size: 24rpx;
-        }
-        .info-name{
-          color: #4f4f4f;
-          font-size: 30rpx;
-          font-weight: 500;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          max-width: 400rpx;
-        }
-        .info-num, .info-total{
-          color: #afafaf;
-        }
-      }
-    }
-   .order-tip{
-    .tip-info{
-      margin-bottom: 20rpx;
-      color: #afafaf;
-      font-size: 28rpx;
-      text-align: center;
-    }
-    .tip-action{
-      width: 120rpx;
-      height: 60rpx;
-      font-size: 28rpx;
-      background-color: #409EFF;
-      text-align: center;
-      line-height: 60rpx;
-      color: #fff;
-      border-radius: 120rpx;
     }
   }
 }
+.count{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .counter{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .counter-btn{
+        width: 100rpx;
+        height: 60rpx;
+        font-size: 34rpx;
+        background-color: #409EFF;
+        text-align: center;
+        line-height: 55rpx;
+        color: #fff;
+        border-radius: 50rpx;
+        padding: 0rpx;
+      }
+      .active{
+        background-color: #409EFF;
+        color: #fff;
+      }
+      .disabled{
+        background-color: rgb(171, 206, 241);
+        color: rgb(79, 81, 83);
+      }
+      .count-val{
+        margin: 0 20rpx;
+        height: 60rpx;
+        line-height: 60rpx;
+        width: 60rpx;
+        text-align: center;
+      }
+    }
+}
+.submit{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100rpx;
+  align-items: center;
+  align-items: center;
+  padding: 20rpx;
+  background: #fff;
+  .total-price{
+    display: flex;
+    flex-direction: row;
+    font-size: 34rpx;
+    color: #f60;
+    font-weight: 700;
+    .price-unit{
+      font-size: 28rpx;
+      margin-top: 6rpx;
+    }
+  }
+  .submit-order{
+    width: 280rpx;
+    height: 80rpx;
+    font-size: 34rpx;
+    background-color: #f90;
+    text-align: center;
+    line-height: 80rpx;
+    color: #fff;
+    border-radius: 120rpx;
+  }
+}
+
+
 </style>
