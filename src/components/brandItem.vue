@@ -72,6 +72,7 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      max-width: 400rpx;
     }
     .info-score{
       display: flex;
