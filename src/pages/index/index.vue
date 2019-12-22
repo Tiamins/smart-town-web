@@ -17,7 +17,7 @@
       <van-cell class="item-title" title="我的收藏" is-link  link-type="navigateTo" url="/pages/myStar/main">
         <van-icon  slot="icon" name="star" color="#409EFF" size="30rpx"/>
       </van-cell>
-      <van-cell class="item-title" title="收获地址" is-link  link-type="navigateTo" url="/pages/myAddress/main">
+      <van-cell class="item-title" title="收货地址" is-link  link-type="navigateTo" url="/pages/myAddress/main">
         <van-icon  slot="icon" name="map-marked" color="#409EFF" size="30rpx"/>
       </van-cell>
       <van-cell class="item-title" title="联系客服"  @click="handleContact">
@@ -64,6 +64,7 @@ export default {
       })
     },
     handleLogin(e){
+      console.log('e:', e);
       this.userInfo = e.mp.detail.userInfo;
       this.isLogin = true;
     },
@@ -77,11 +78,63 @@ export default {
       }).catch(() => {
         // on cancel
       });
+    },
+    getUserInfo(){
+      wx.request({
+        url: '39.107.58.68:8088/demo/user/sayHello',
+        data:{},
+        method: 'POST',
+        header: {
+          'content-type': 'application/json'
+        },
+        success: (res) => {
+          console.log("res:",res);
+          this.userInfo = res.list.userInfo;
+        }
+      })
     }
   },
 
   created () {
     // let app = getApp()
+    const token = mpvue.getStorageSync("token");
+    
+    if(token){
+      this.isLogin = true;
+      this.getUserInfo(token);
+    }else{
+       Dialog.confirm({
+        title: '提示',
+        message: '当前'
+      }).then(() => {
+        this.userInfo = null;
+        this.isLogin = false;
+      }).catch(() => {
+        // on cancel
+      });
+
+      wx.login({
+        success: (res) => {
+          if(res.code){
+            const code = res.code;
+            wx.request({
+              url: '39.107.58.68:8081/demo/user/login',
+              data: {
+                code,
+              },
+              method: 'POST',
+              header: {
+                'content-type': 'application/json',
+              },
+              success: (res) => {
+                console.log('res:',res);
+                mpvue.setSorageSync("token", res.list.token);
+              }
+            })
+          }
+        }
+      })
+    }
   }
 }
 </script>
