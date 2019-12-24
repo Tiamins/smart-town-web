@@ -56,6 +56,7 @@ export default {
                       console.log("res2:", res2);   
                       const response = await userLogin({code});
                       console.log('response:', response.list);
+                      mpvue.setStorageSync("token", response.list);
                       // 上传/更新用户信息  
                       const { nickName, avatarUrl, country, province, city, gender } = res2.userInfo;
                       await updateUserInfo({nickName, avatarUrl, country, province, city, gender});
