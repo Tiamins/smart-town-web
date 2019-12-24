@@ -1,0 +1,14 @@
+{
+    "navigationBarTitleText": "智慧小镇",
+    "usingComponents": {
+        "van-button": "/static/vant/button/index",
+        "van-swipe": "/static/vant/swipe-cell/index",
+        "van-search": "/static/vant/search/index",
+        "van-icon": "/static/vant/icon/index",
+        "van-card": "/static/vant/card/index",
+        "van-divider": "/static/vant/divider/index",
+        "van-rate": "/static/vant/rate/index",
+        "van-toast": "/static/vant/toast/index",
+        "van-dialog": "/static/vant/dialog/index"
+    }
+}

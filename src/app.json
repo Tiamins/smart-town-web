@@ -19,6 +19,14 @@
         "pages/counter/main"
 
     ],
+    "subpackages": [
+        {
+            "root": "pages/user/pages/",
+            "pages": [
+                "userLogin/main"
+            ]
+        }
+    ],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",

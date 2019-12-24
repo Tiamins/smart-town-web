@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import App from './App'
-import { openWin, redirectTo, backBeforeWin, Ajax } from './utils/index'
+import { openWin, redirectTo, backBeforeWin } from './utils/index'
 import store from './utils/store'
+import fetch from './utils/fetch'
 
 Vue.config.productionTip = false
 App.mpType = 'app'
@@ -9,7 +10,7 @@ App.mpType = 'app'
 Vue.prototype.$openWin = openWin
 Vue.prototype.$redirectTo = redirectTo
 Vue.prototype.$backBeforeWin = backBeforeWin
-Vue.prototype.$ajax = Ajax
+Vue.prototype.$fetch = fetch
 // 把store挂载到Vue原型上
 Vue.prototype.$store = store
 const app = new Vue(App)

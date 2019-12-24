@@ -35,12 +35,15 @@
 <script>
 import card from '@/components/card'
 import Dialog from '../../../static/vant/dialog/dialog';
+import { openWin } from '@/utils/index'
+import { loginUrl } from '@/components/constants/index'
 export default {
   data () {
     return {
       isLogin: false,
       servicePhone: "18811319395",
       userInfo: {},
+      loginUrl,
     }
   },
 
@@ -49,24 +52,10 @@ export default {
   },
 
   methods: {
-    bindViewTap () {
-      const url = '../logs/main'
-      if (mpvuePlatform === 'wx') {
-        mpvue.switchTab({ url })
-      } else {
-        mpvue.navigateTo({ url })
-      }
-    },
     handleContact(e){
-      console.log('e:', e);
       wx.makePhoneCall({
         phoneNumber: this.servicePhone,
       })
-    },
-    handleLogin(e){
-      console.log('e:', e);
-      this.userInfo = e.mp.detail.userInfo;
-      this.isLogin = true;
     },
     handleLogout(e){
       Dialog.confirm({
@@ -79,62 +68,23 @@ export default {
         // on cancel
       });
     },
-    getUserInfo(){
-      wx.request({
-        url: '39.107.58.68:8088/demo/user/sayHello',
-        data:{},
-        method: 'POST',
-        header: {
-          'content-type': 'application/json'
-        },
-        success: (res) => {
-          console.log("res:",res);
-          this.userInfo = res.list.userInfo;
-        }
-      })
-    }
   },
 
   created () {
     // let app = getApp()
     const token = mpvue.getStorageSync("token");
-    
-    if(token){
-      this.isLogin = true;
-      this.getUserInfo(token);
-    }else{
-       Dialog.confirm({
-        title: '提示',
-        message: '当前'
-      }).then(() => {
-        this.userInfo = null;
-        this.isLogin = false;
-      }).catch(() => {
-        // on cancel
-      });
+    if (token){
+        wx.checkSession({
+          success: () => {
 
-      wx.login({
-        success: (res) => {
-          if(res.code){
-            const code = res.code;
-            wx.request({
-              url: '39.107.58.68:8081/demo/user/login',
-              data: {
-                code,
-              },
-              method: 'POST',
-              header: {
-                'content-type': 'application/json',
-              },
-              success: (res) => {
-                console.log('res:',res);
-                mpvue.setSorageSync("token", res.list.token);
-              }
-            })
+          },
+          fail: () => {
+            openWin(loginUrl)
           }
-        }
-      })
-    }
+        })
+      } else {
+        openWin(loginUrl)
+      }
   }
 }
 </script>

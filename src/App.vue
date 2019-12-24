@@ -1,5 +1,28 @@
 <script>
+// import { openWin } from './utils/index'
+import { loginUrl } from './components/constants/index'
 export default {
+  data() {
+    return {
+      loginUrl,
+    }
+  },
+  methods: {
+    handleLogin () {
+      const token = mpvue.getStorageSync("token");
+      if (token){
+        wx.checkSession({
+          success: () => {
+          },
+          fail: () => {
+            this.$openWin(loginUrl)
+          }
+        })
+      } else {
+        this.$openWin(loginUrl)
+      }
+    }
+  },
   created () {
     // 调用API从本地缓存中获取数据
     /*
@@ -23,6 +46,7 @@ export default {
       logs.unshift(Date.now())
       mpvue.setStorageSync('logs', logs)
     }
+    this.handleLogin();
   },
   log () {
     console.log(`log at:${Date.now()}`)

@@ -1,4 +1,5 @@
-function formatNumber (n) {
+export const apiUrl = process.env.NODE_ENV === 'DEVELOPMENT' ? "http://localhost" : "http://39.107.58.68:8088";
+export function formatNumber (n) {
   const str = n.toString()
   return str[1] ? str : `0${str}`
 }
@@ -35,30 +36,30 @@ export function formatDateAdd (date, addDay) {
 }
 
 // 封装Ajax
-export function Ajax (opts, cb = function(){}) {
-  wx.showLoading({title: '请求中...', mask: true})
-  const {url, type = 'GET', params = {}} = opts
-  return new Promise((resolve, reject) => {
-    wx.request({
-      url,
-      data: params,
-      method: type,
-      header: {"content-type": "application/json"},
-      success(res) {
-        resolve(res)
-      },
-      fail(err) {
-        reject(err)
-      },
-      complete(res) {
-        setTimeout(() => {
-          wx.hideLoading()
-          cb && cb(res)
-        }, 1000)
-      }
-    })
-  })
-}
+// export function Ajax (opts, cb = function(){}) {
+//   wx.showLoading({title: '请求中...', mask: true})
+//   const {url, type = 'GET', params = {}, header = {"content-type": "application/json"}} = opts
+//   return new Promise((resolve, reject) => {
+//     wx.request({
+//       url,
+//       data: params,
+//       method: type,
+//       header: {"content-type": "application/json"},
+//       success(res) {
+//         resolve(res)
+//       },
+//       fail(err) {
+//         reject(err)
+//       },
+//       complete(res) {
+//         setTimeout(() => {
+//           wx.hideLoading()
+//           cb && cb(res)
+//         }, 1000)
+//       }
+//     })
+//   })
+// }
 // 打开新窗口
 export function openWin (url) {
   wx.navigateTo({url: url})
@@ -70,8 +71,4 @@ export function redirectTo (url) {
 // 返回上一级窗口
 export function backBeforeWin () {
   wx.navigateBack({delta: 1})
-}
-export default {
-  formatNumber,
-  formatTime
 }

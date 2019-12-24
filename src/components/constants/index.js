@@ -77,6 +77,8 @@ const hotelPrice = [
   { id: 5, price: '1000以上' },
 ];
 
+const loginUrl = '/pages/user/pages/userLogin/main';
+
 export {
  brandType,
  categoryType,
@@ -85,4 +87,5 @@ export {
  hotelStar,
  hotelPrice,
  qqmapsdk,
+ loginUrl,
 }

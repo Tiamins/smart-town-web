@@ -56,6 +56,7 @@
 
 <script>
 import brandItem from '../../components/brandItem.vue'
+import { loginUrl } from '../../components/constants/index'
 
 export default {
   data() {
@@ -93,6 +94,21 @@ export default {
     brandItem
   },
 
+  created () {
+   const token = mpvue.getStorageSync("token");
+    if (token){
+      wx.checkSession({
+        success: () => {
+        },
+        fail: () => {
+          this.$openWin(loginUrl)
+        }
+      })
+    } else {
+      this.$openWin(loginUrl)
+    }
+  },
+  
   methods: {
     handleSearch() {
       let url = "../search/main?type=home";

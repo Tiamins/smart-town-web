@@ -35,7 +35,8 @@ module.exports = {
         'no-tabs': 0,
         'no-mixed-spaces-and-tabs': 0,
         // allow debugger during development
-        'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+        'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+        'brace-style': 0,
     },
     globals: {
         App: true,
