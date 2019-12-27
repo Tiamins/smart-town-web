@@ -1,9 +1,8 @@
 // 封装网络请求
 // import { apiUrl } from '../utils/index'
-const apiUrl = "http://localhost:8088";
+const apiUrl = "http://10.236.96.217:8088";
 
 const fetch = (conf, cb = function(){}) => {
-  wx.showLoading({title: '请求中', mask: true})
   const {url, type = 'GET', data = {}, header} = conf;
   return new Promise((resolve, reject) => {
     wx.request({
@@ -15,12 +14,9 @@ const fetch = (conf, cb = function(){}) => {
         ...header,
       },
       success(res){
-        // if (res.code === 200){
-        //   resolve(res)
-        // } else {
-        //   reject(res)
-        // }
-        resolve(res)
+        if (res.statusCode === 200){
+          resolve(res.data)
+        }
       },
       fail(err){
         reject(err)

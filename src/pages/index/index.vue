@@ -7,7 +7,7 @@
       <div class="user-name">{{userInfo.nickName}}</div>
     </div>
     <div v-else class="user-login">
-      <van-button class="log-in" @getuserinfo="handleLogin" open-type="getUserInfo" color="#409EFF">登录/注册</van-button>
+      <van-button class="log-in" @click="handleLogin"  color="#409EFF">登录/注册</van-button>
     </div>
     <div class="divider"></div>
     <div class="list-info">
@@ -35,15 +35,23 @@
 <script>
 import card from '@/components/card'
 import Dialog from '../../../static/vant/dialog/dialog';
-import { openWin } from '@/utils/index'
+import { openWin } from '@/utils/index';
+import store from '@/utils/store';
 import { loginUrl } from '@/components/constants/index'
 export default {
   data () {
     return {
-      isLogin: false,
       servicePhone: "18811319395",
-      userInfo: {},
       loginUrl,
+    }
+  },
+
+  computed: {
+    userInfo () {
+      return store.state.userInfo
+    },
+    isLogin () {
+      return store.state.isLogin
     }
   },
 
@@ -62,30 +70,17 @@ export default {
         title: '确认退出登录',
         message: '退出登录后，您将无法体验更多功能'
       }).then(() => {
-        this.userInfo = null;
-        this.isLogin = false;
+        store.commit("cleanUserInfo");
+        store.commit("updateIsLogin", false);
+        store.commit("updateToken", '');
       }).catch(() => {
         // on cancel
       });
     },
+    handleLogin(){
+      openWin(loginUrl);
+    }
   },
-
-  created () {
-    // let app = getApp()
-    const token = mpvue.getStorageSync("token");
-    if (token){
-        wx.checkSession({
-          success: () => {
-
-          },
-          fail: () => {
-            openWin(loginUrl)
-          }
-        })
-      } else {
-        openWin(loginUrl)
-      }
-  }
 }
 </script>
 

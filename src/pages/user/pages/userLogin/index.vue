@@ -17,6 +17,7 @@
 import { userLogin, updateUserInfo } from '@/services/api.js'
 import Toast from '../../../../../static/vant/toast/toast'
 import Dialog from '../../../../../static/vant/dialog/dialog';
+import store from '@/utils/store.js'
 
 export default {
   data () {
@@ -53,13 +54,17 @@ export default {
                     withCredentials: true,
                     success: async (res2) => {
                       // 用户信息
-                      console.log("res2:", res2);   
-                      const response = await userLogin({code});
-                      console.log('response:', response.list);
-                      mpvue.setStorageSync("token", response.list);
+                      const { encryptedData, iv } = res2; 
+                      const response = await userLogin({ code, encryptedData, iv });
+                      store.commit("updateToken", response.list);
                       // 上传/更新用户信息  
                       const { nickName, avatarUrl, country, province, city, gender } = res2.userInfo;
-                      await updateUserInfo({nickName, avatarUrl, country, province, city, gender});
+                      const resUserInfo = await updateUserInfo({nickName, avatarUrl, country, province, city, gender});
+                      store.commit("updateUser", {nickName, avatarUrl, gender, province, city});
+                      store.commit("updateIsLogin", true);
+                      wx.navigateBack({
+                        delta: 1
+                      })
                     }
                   })
                 } 
@@ -85,9 +90,6 @@ export default {
       })
     },
   },
-
-  created () {
-  }
 }
 </script>
 <style lang="less" scoped>

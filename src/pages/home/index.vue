@@ -57,6 +57,7 @@
 <script>
 import brandItem from '../../components/brandItem.vue'
 import { loginUrl } from '../../components/constants/index'
+import store from '@/utils/store'
 
 export default {
   data() {
@@ -94,19 +95,23 @@ export default {
     brandItem
   },
 
-  created () {
-   const token = mpvue.getStorageSync("token");
-    if (token){
-      wx.checkSession({
-        success: () => {
-        },
-        fail: () => {
-          this.$openWin(loginUrl)
-        }
-      })
-    } else {
-      this.$openWin(loginUrl)
-    }
+  mounted () {
+  //  const token = store.state.token;
+  // console.log("created");
+  // const token = " ";
+  //  console.log("hometoken:", token)
+  //   if (token){
+  //     wx.checkSession({
+  //       success: () => {
+  //       },
+  //       fail: () => {
+  //         this.$openWin(loginUrl)
+  //       }
+  //     })
+  //   } else {
+  //     this.$openWin(loginUrl)
+  //   }
+  console.log("state:", store.state)
   },
   
   methods: {

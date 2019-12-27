@@ -12,6 +12,7 @@ const store = new Vuex.Store({
     	nickName: '',
     	province: ''
     },
+    token: '',
   },
   mutations: {
     updateCity: (state, change) => {
@@ -30,8 +31,10 @@ const store = new Vuex.Store({
   		}
   	},
     updateUser: (state, change) => {
-      change.gender = change.gender === 1 ? '男' : '女'
       state.userInfo = change
+    },
+    updateToken: (state, change) => {
+      state.token = change;
     }
   }
 })

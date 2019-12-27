@@ -10,6 +10,7 @@
       "van-card": "/static/vant/card/index",
       "van-divider": "/static/vant/divider/index",
       "van-cell": "/static/vant/cell/index",
+      "van-picker": "/static/vant/picker/index",
       "van-rate": "/static/vant/rate/index"
   }
 }

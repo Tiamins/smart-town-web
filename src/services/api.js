@@ -1,4 +1,5 @@
 import fetch from '../utils/fetch'
+import store from '../utils/store'
 // 上传
 // export const upload = async (params, url) => {
 //   return this.$ajax({
@@ -16,9 +17,6 @@ import fetch from '../utils/fetch'
 //     params
 //   })
 // }
-const token = mpvue.getStorageSync("token");
-console.log("token:", token);
-
 export const userLogin = async (params) => {
   return fetch({
     url: '/demo/user/login',
@@ -33,7 +31,17 @@ export const updateUserInfo = async (params) => {
     type: 'POST',
     data: params,
     header: {
-      "Authorization": "Bearer " + token,
+      "Authorization": "Bearer " + store.state.token,
     },
+  })
+}
+
+export const getSpotList = async () => {
+  return fetch({
+    url: '/demo/spot/select/all',
+    type: 'GET',
+    header: {
+      "Authorization": "Bearer " + store.state.token,
+    }
   })
 }

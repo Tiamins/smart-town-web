@@ -1,6 +1,7 @@
 <script>
-// import { openWin } from './utils/index'
+import { openWin } from './utils/index'
 import { loginUrl } from './components/constants/index'
+import store from '@/utils/store'
 export default {
   data() {
     return {
@@ -9,7 +10,8 @@ export default {
   },
   methods: {
     handleLogin () {
-      const token = mpvue.getStorageSync("token");
+      const token = store.state.token;
+      console.log("showoken:", token);
       if (token){
         wx.checkSession({
           success: () => {
@@ -22,6 +24,21 @@ export default {
         this.$openWin(loginUrl)
       }
     }
+  },
+  mounted () {
+    const token = store.state.token;
+      console.log("showoken:", token);
+      if (token){
+        wx.checkSession({
+          success: () => {
+          },
+          fail: () => {
+            openWin(loginUrl)
+          }
+        })
+      } else {
+        openWin(loginUrl)
+      }
   },
   created () {
     // 调用API从本地缓存中获取数据
@@ -46,7 +63,6 @@ export default {
       logs.unshift(Date.now())
       mpvue.setStorageSync('logs', logs)
     }
-    this.handleLogin();
   },
   log () {
     console.log(`log at:${Date.now()}`)
