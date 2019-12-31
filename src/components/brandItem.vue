@@ -35,12 +35,11 @@ export default {
   },
   methods: {
     getDetail(category, id) {
-      if(category === 0 || category === 1){
+      if (category === 0 || category === 1){
         wx.navigateTo({
           url: `/pages/brandDetail/main?category=${category}&id=${id}`,
         })
       }
-      
     }
   }
  

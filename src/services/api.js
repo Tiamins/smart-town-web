@@ -25,13 +25,23 @@ export const userLogin = async (params) => {
   })
 }
 
+export const sayHello = async () => {
+  return fetch({
+    url: '/demo/user/sayHello',
+    type: 'POST',
+    header: {
+      "Authorization": store.state.token,
+    },
+  })
+}
+
 export const updateUserInfo = async (params) => {
   return fetch({
     url: '/demo/user/userInfo',
     type: 'POST',
     data: params,
     header: {
-      "Authorization": "Bearer " + store.state.token,
+      "Authorization": store.state.token,
     },
   })
 }
@@ -41,7 +51,18 @@ export const getSpotList = async () => {
     url: '/demo/spot/select/all',
     type: 'GET',
     header: {
-      "Authorization": "Bearer " + store.state.token,
+      "Authorization": store.state.token,
+    }
+  })
+}
+
+export const addAddress = async (params) => {
+  return fetch({
+    url: '/demo/receiver-address/create',
+    type: 'POST',
+    data: params,
+    header: {
+      "Authorization": store.state.token,
     }
   })
 }

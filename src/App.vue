@@ -1,7 +1,7 @@
 <script>
-import { openWin } from './utils/index'
 import { loginUrl } from './components/constants/index'
 import store from '@/utils/store'
+import { sayHello } from '@/services/api'
 export default {
   data() {
     return {
@@ -9,12 +9,15 @@ export default {
     }
   },
   methods: {
-    handleLogin () {
-      const token = store.state.token;
+  },
+  mounted () {
+    const token = store.state.token;
       console.log("showoken:", token);
       if (token){
         wx.checkSession({
-          success: () => {
+          success: async () => {
+            const res = await sayHello();
+            console.log('res:', res);
           },
           fail: () => {
             this.$openWin(loginUrl)
@@ -22,22 +25,6 @@ export default {
         })
       } else {
         this.$openWin(loginUrl)
-      }
-    }
-  },
-  mounted () {
-    const token = store.state.token;
-      console.log("showoken:", token);
-      if (token){
-        wx.checkSession({
-          success: () => {
-          },
-          fail: () => {
-            openWin(loginUrl)
-          }
-        })
-      } else {
-        openWin(loginUrl)
       }
   },
   created () {

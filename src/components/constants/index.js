@@ -78,7 +78,10 @@ const hotelPrice = [
 ];
 
 const loginUrl = '/pages/user/pages/userLogin/main';
-
+const citys = {
+  '浙江': ['杭州', '宁波', '温州', '嘉兴', '湖州'],
+  '福建': ['福州', '厦门', '莆田', '三明', '泉州']
+};
 export {
  brandType,
  categoryType,
@@ -88,4 +91,5 @@ export {
  hotelPrice,
  qqmapsdk,
  loginUrl,
+ citys,
 }

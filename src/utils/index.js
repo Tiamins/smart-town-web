@@ -72,3 +72,10 @@ export function redirectTo (url) {
 export function backBeforeWin () {
   wx.navigateBack({delta: 1})
 }
+export function message (type, info) {
+  wx.showToast({
+    title: info,
+    icon: type,
+    duration: 1500, 
+  })
+}

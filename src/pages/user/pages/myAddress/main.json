@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "智慧小镇",
+    "usingComponents": {
+        "van-icon": "/static/vant/icon/index"
+    }
+}

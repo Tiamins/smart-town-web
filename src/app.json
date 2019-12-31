@@ -1,5 +1,6 @@
 {
     "pages": [
+        
         "pages/home/main",
         "pages/search/main",
         "pages/spot/main",
@@ -9,7 +10,6 @@
         "pages/makeComment/main",
         "pages/index/main",
         "pages/myStar/main",
-        "pages/myAddress/main",
         "pages/addressMap/main",
         "pages/order/main",
         "pages/orderDetail/main",
@@ -24,7 +24,8 @@
             "root": "pages/user/pages/",
             "pages": [
                 "userLogin/main"
-            ]
+            ],
+            "name": "user"
         }
     ],
     "window": {
