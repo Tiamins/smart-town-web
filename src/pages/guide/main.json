@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "攻略",
+    "usingComponents": {
+        "van-icon": "/static/vant/icon/index",
+        "van-divider": "/static/vant/divider/index"
+    }
+}
