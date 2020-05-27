@@ -1,12 +1,14 @@
 <template>
   <div class="wrap">
       <div class="order-type">
-        <van-tabs swipe-threshold="5" color="#409EFF" @click="onClick">
+        <van-tabs swipe-threshold="4" color="#409EFF" @click="onClick" swipeable="true">
           <van-tab name="0" title="全部"></van-tab>
           <van-tab name="1" title="待付款"></van-tab>
           <van-tab name="2" title="待使用"></van-tab>
-          <van-tab name="3" title="待评价"></van-tab>
-          <van-tab name="4" title="已退款"></van-tab>
+          <van-tab name="3" title="待发货"></van-tab>
+          <van-tab name="4" title="待收货"></van-tab>
+          <van-tab name="5" title="待评价"></van-tab>
+          <van-tab name="6" title="已退款"></van-tab>
         </van-tabs>
       </div>
       <div class="main order-list">
@@ -24,7 +26,11 @@
             </div>
             <div class="order-tip">
               <div class="tip-info">{{orderType[item.status]}}</div>
-              <div v-if="item.status===3" class="tip-action" @click="goMakeComment">评价</div>
+              <div v-if="item.status===1" class="tip-action" @click="goMakeComment">去付款</div>
+              <div v-if="item.status===2" class="tip-action" @click="goMakeComment">去退款</div>
+              <div v-if="item.status===3" class="tip-action" @click="goMakeComment">去退款</div>
+              <div v-if="item.status===4" class="tip-action" @click="goMakeComment">确认收货</div>
+              <div v-if="item.status===5" class="tip-action" @click="goMakeComment">评价</div>
             </div>
           </div>
           <van-divider />
@@ -40,11 +46,11 @@ export default {
       orderType,
       orderList: [
         {oid: '0', name: '东夷海洋馆成人票', headIcon: '/static/images/sea4.jpg', totalPrice: '200.00', num: '2', status: 1, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
-        {oid: '0', name: '悦湾大酒店大床房', headIcon: '/static/images/hotel3.jpeg', totalPrice: '500.00', num: '1', status: 2, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
-        {oid: '0', name: '金沙滩学生票', headIcon: '/static/images/beach1.jpeg', totalPrice: '100.00', num: '4', status: 3, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
+        {oid: '0', name: '悦湾大酒店大床房', headIcon: '/static/images/hotel3.jpeg', totalPrice: '500.00', num: '1', status: 5, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
+        {oid: '0', name: '金沙滩学生票', headIcon: '/static/images/beach1.jpeg', totalPrice: '100.00', num: '4', status: 1, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
         {oid: '0', name: '宽板凳火锅四人套餐', headIcon: '/static/images/hotpot.jpg', totalPrice: '360.00', num: '1', status: 4, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
-        {oid: '0', name: '胖哥俩肉蟹煲双人餐', headIcon: '/static/images/pangfood.jpg', totalPrice: '160.00', num: '1', status: 4, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
-        {oid: '0', name: 'Toma酒店套房', headIcon: '/static/images/hotel6.jpeg', totalPrice: '700.00', num: '1', status: 1, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
+        {oid: '0', name: '胖哥俩肉蟹煲双人餐', headIcon: '/static/images/pangfood.jpg', totalPrice: '160.00', num: '1', status: 2, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
+        {oid: '0', name: 'Toma酒店套房', headIcon: '/static/images/hotel6.jpeg', totalPrice: '700.00', num: '1', status: 6, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
         {oid: '0', name: 'Tomacado花厨双人晚餐', headIcon: '/static/images/westfood.jpeg', totalPrice: '640.00', num: '1', status: 1, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
       ],
     }

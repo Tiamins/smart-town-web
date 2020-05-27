@@ -15,15 +15,17 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"miniprogramRoot": "dist/wx/",
 	"compileType": "miniprogram",
-	"appid": "wx36002e98b2b018f9",
+	"appid": "wxea4ae08d9e608472",
 	"projectname": "smart-town-web",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
-	"libVersion": "2.9.4",
+	"libVersion": "2.11.0",
 	"condition": {
 		"search": {
 			"current": -1,

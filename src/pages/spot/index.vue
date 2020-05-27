@@ -48,7 +48,7 @@ export default {
   },
 
   async mounted() {
-    const spot = await getSpotList();
+    const spot = await getSpotList(); 
     this.spotList = spot.list.map((item) => {
       const temp = {
         id: item.spotId,
@@ -56,7 +56,7 @@ export default {
         name: item.spotName,
         headIcon: item.spotPic,
         category: 0,
-        type: 1,
+        type: item.spotType,
         avgPrice: item.spotAvgPrice,
 
       };

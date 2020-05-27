@@ -14,10 +14,13 @@
       <van-cell class="item-title" title="我的订单" is-link  link-type="switchTab" url="/pages/order/main">
         <van-icon  slot="icon" name="orders-o" color="#409EFF" size="30rpx"/>
       </van-cell>
-      <van-cell class="item-title" title="我的收藏" is-link  link-type="navigateTo" url="/pages/myStar/main">
+      <van-cell class="item-title" title="我的收藏" is-link  link-type="navigateTo" url="/pages/user/pages/myCollect/main">
         <van-icon  slot="icon" name="star" color="#409EFF" size="30rpx"/>
       </van-cell>
-      <van-cell class="item-title" title="收货地址" is-link  link-type="navigateTo" url="/pages/user/pages/myAddress/main">
+       <van-cell class="item-title" title="我的攻略" is-link  link-type="navigateTo" url="/pages/user/pages/myGuide/main?select=false">
+        <van-icon  slot="icon" name="star" color="#409EFF" size="30rpx"/>
+      </van-cell>
+      <van-cell class="item-title" title="收货地址" is-link  link-type="navigateTo" url="/pages/user/pages/myAddress/main?select=false">
         <van-icon  slot="icon" name="map-marked" color="#409EFF" size="30rpx"/>
       </van-cell>
       <van-cell class="item-title" title="联系客服"  @click="handleContact">

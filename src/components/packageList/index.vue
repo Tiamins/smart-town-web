@@ -8,7 +8,7 @@
     <block v-for="(item, index) in packageInfo" :key="index">
       <div class="package-main">
         <div class="brand-item" @click="getPackageDetail(item.category, item.id)">
-          <div v-if="detail.category !== 6" class="head-icon">
+          <div v-if="detail.category !== 0" class="head-icon">
             <image :src="item.headIcon" alt="头像" mode="aspectFill" />
           </div>
           <div class="brand-info">
@@ -24,8 +24,14 @@
             <div class="price sell"><b class="price-unit">￥</b>{{item.price}}</div>
             <s class="price value">￥{{item.value}}</s>
           </div>
-          <div class="buy-info" @click="gotoMakeOrder(detail, item)">
+          <div v-if="detail.category == 0" class="buy-info" @click="gotoMakeOrder(item.id)">
             立即预订
+          </div>
+           <div v-if="detail.category == 4" class="buy-info" @click="gotoMakeOrder(item.id)">
+            点餐
+          </div>
+          <div v-if="detail.category !== 0 && detail.category !== 4" class="buy-info" @click="gotoMakeOrder(item.id)">
+            加入购物车
           </div>
         </div>
       </div>
@@ -50,9 +56,9 @@ export default {
         url: `/pages/brandAlbum/main?category=${category}&id=${id}`,
       })
     },
-    gotoMakeOrder(detail, item){
+    gotoMakeOrder(id){
       wx.navigateTo({
-        url: `/pages/makeOrder/main?&item=${item}`
+        url: `/pages/makeTicketOrder/main?id=${id}`
       })
     }
   },

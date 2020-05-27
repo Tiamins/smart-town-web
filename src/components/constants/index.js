@@ -26,8 +26,10 @@ const orderType = {
   0: '全部',
   1: '待付款',
   2: '待使用',
-  3: '待评价',
-  4: '已退款',
+  3: '待发货',
+  4: '待收货',
+  5: '待评价',
+  6: '已退款',
 };
 const brandType = {
 0: {
@@ -76,7 +78,18 @@ const hotelPrice = [
   { id: 4, price: '600-1000' },
   { id: 5, price: '1000以上' },
 ];
-
+const travelType = [
+  {id: 0, name: '亲子游', type: 0},
+  {id: 1, name: '蜜月游', type: 1},
+  {id: 2, name: '单人游', type: 2},
+  {id: 3, name: '毕业旅行', type: 3},
+];
+const travelPrice = [
+  { id: 0, price: '500以下' },
+  { id: 1, price: '1000-500' },
+  { id: 2, price: '2000-1000' },
+  { id: 5, price: '2000以上' },
+];
 const loginUrl = '/pages/user/pages/userLogin/main';
 const citys = {
   '浙江': ['杭州', '宁波', '温州', '嘉兴', '湖州'],
@@ -92,4 +105,6 @@ export {
  qqmapsdk,
  loginUrl,
  citys,
+ travelPrice,
+ travelType,
 }

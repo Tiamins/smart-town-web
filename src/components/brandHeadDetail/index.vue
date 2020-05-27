@@ -8,6 +8,7 @@
           <div class="info-name">{{detail.name}}</div>
           <div class="info-score">
             <van-rate
+              readonly
               :value="detail.score"
               size="15"
               allow-half
@@ -24,7 +25,7 @@
           <button open-type="share"  class="option-item share">
             <van-icon name="share" size="20"/>
           </button>
-          <div class="option-item star" @click="handleStar">
+          <div class="option-item star" @click="handleCollect">
             <van-icon :name="starName[collected]" :color="starColor[collected]" size="20"/>
           </div>
         </div>
@@ -45,7 +46,7 @@
 <script>
 // import { brandType } from '../constants/index'
 import { qqmapsdk } from '../../components/constants/index'
-
+// import { addCollect, deleteCollect } from '@/services/api.js'
 export default {
   props: ['detail'],
   data() {
@@ -61,10 +62,11 @@ export default {
         url: `/pages/brandAlbum/main?category=${category}&id=${id}`,
       })
     },
-    handleStar(){
+    handleCollect(){
       this.collected = (this.collected === 0) ? 1 : 0;
     },
     handlePhone(){
+      console.log(this.detail.phone);
       wx.makePhoneCall({
         phoneNumber: this.detail.phone,
       })

@@ -36,7 +36,7 @@ export default {
       console.log("e:", e);
       this.checkAndLogin();
     },
-    checkAndLogin () {
+    async checkAndLogin () {
       let code = "";
       wx.login({
         success: (res) => {

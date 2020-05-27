@@ -10,23 +10,23 @@ export default {
   },
   methods: {
   },
-  mounted () {
-    const token = store.state.token;
-      console.log("showoken:", token);
-      if (token){
-        wx.checkSession({
-          success: async () => {
-            const res = await sayHello();
-            console.log('res:', res);
-          },
-          fail: () => {
-            this.$openWin(loginUrl)
-          }
-        })
-      } else {
-        this.$openWin(loginUrl)
-      }
-  },
+  // mounted () {
+  //   const token = store.state.token;
+  //     console.log("showoken:", token);
+  //     if (token){
+  //       wx.checkSession({
+  //         success: async () => {
+  //           const res = await sayHello();
+  //           console.log('res:', res);
+  //         },
+  //         fail: () => {
+  //           this.$openWin(loginUrl)
+  //         }
+  //       })
+  //     } else {
+  //       this.$openWin(loginUrl)
+  //     }
+  // },
   created () {
     // 调用API从本地缓存中获取数据
     /*

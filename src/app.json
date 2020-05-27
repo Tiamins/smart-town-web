@@ -9,11 +9,14 @@
         "pages/userComment/main",
         "pages/makeComment/main",
         "pages/index/main",
-        "pages/myStar/main",
-        "pages/addressMap/main",
+        "pages/guide/main",
+        "pages/travel/main",
         "pages/order/main",
+        "pages/shop/main",
+        "pages/cater/main",
+        "pages/addressMap/main",
         "pages/orderDetail/main",
-        "pages/makeOrder/main",
+        "pages/makeTicketOrder/main",
         "pages/hotel/main",
         "pages/logs/main",
         "pages/counter/main"
@@ -57,26 +60,6 @@
                 "pagePath": "pages/index/main",
                 "iconPath": "static/tabs/user.png",
                 "selectedIconPath": "static/tabs/user-active.png"
-            }
-        ],
-
-        "items": [{
-                "name": "首页",
-                "pagePath": "pages/home/main",
-                "icon": "static/tabs/home.png",
-                "activeIcon": "static/tabs/home-active.png"
-            },
-            {
-                "text": "订单",
-                "pagePath": "pages/index/main",
-                "iconPath": "static/tabs/order.png",
-                "selectedIconPath": "static/tabs/order-active.png"
-            },
-            {
-                "name": "我的",
-                "pagePath": "pages/logs/main",
-                "icon": "static/tabs/user.png",
-                "activeIcon": "static/tabs/user-active.png"
             }
         ],
         "position": "bottom"

@@ -1,6 +1,7 @@
 // 封装网络请求
 // import { apiUrl } from '../utils/index'
-const apiUrl = "http://10.236.96.217:8088";
+// const apiUrl = "http://39.107.58.68:8088";
+const apiUrl = "http://127.0.0.1:8088";
 
 const fetch = (conf, cb = function(){}) => {
   const {url, type = 'GET', data = {}, header} = conf;

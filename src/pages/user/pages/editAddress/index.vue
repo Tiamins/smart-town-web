@@ -64,17 +64,19 @@
       <div class="divider"></div>
       <div class="submit">
         <button class="btn" formType='submit'>保存</button>
-        <button class="del btn" @click="handleDelete">删除</button>
+        <button v-if="edit===true" class="del btn" @click="handleDelete">删除</button>
       </div>
     </form>
   </div>
 </template>
 <script>
-import { addAddress } from '@/services/api.js'
+import { addAddress, getAddressDetail } from '@/services/api.js'
 import { citys } from '@/components/constants/index'
 export default {
   data() {
     return {
+      edit: false,
+      detail: {},
       receiverName: 'Tia',
       telephone: '13345667899',
       area: '',
@@ -122,20 +124,29 @@ export default {
         province: areaInfo[0],
         city: areaInfo[1],
         district: '静安区',
-        townShip: '汇安街道',
         detailInfo,
         adCode,
-        defaultAddress: defaultAddress === true ? 1 : 0,
+        isDefault: defaultAddress === true ? 1 : 0,
       };
       await addAddress(params);
-      this.$message('success', '保存成功');
+      const tip = this.edit ? "保存成功" : "新增成功";
+      this.$message('success', tip);
     },
     handleDelete(){
+    }
+  },
+  async mounted(){
+    console.log(this.$root.$mp.query);
+    if (this.$root.$mp.query.id !== undefined){
+      this.edit = true;
+      const { id } = this.$root.$mp.query;
+      this.detail = await getAddressDetail(id);
     }
   }
 }
 </script>
 <style lang="less" scoped>
+@import '../../../../style/base.less';
 .comment{
   margin: 10rpx 0;
 }

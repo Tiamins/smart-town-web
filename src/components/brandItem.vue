@@ -18,28 +18,29 @@
         />
         <p class="score-value">{{item.score}}分</p>
       </div>
-      <div class="info-detail info-type">{{brandType[item.category][item.type]}}</div>
+      <div class="info-detail info-type">{{item.type}}</div>
       <div class="info-detail info-price"><b class="price-unit">￥</b>{{item.avgPrice}}</div>
     </div>
   </div>
 </template>
 
 <script>
-import { brandType } from './constants/index'
+// import { brandType } from './constants/index'
 export default {
   props: ['item'],
   data() {
     return {
-      brandType,
+      // brandType,
     }
   },
   methods: {
     getDetail(category, id) {
-      if (category === 0 || category === 1){
+      console.log("getdetail")
+      // if (category === 0 || category === 1){
         wx.navigateTo({
           url: `/pages/brandDetail/main?category=${category}&id=${id}`,
         })
-      }
+      // }
     }
   }
  

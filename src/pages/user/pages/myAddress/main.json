@@ -1,6 +1,7 @@
 {
-    "navigationBarTitleText": "智慧小镇",
+    "navigationBarTitleText": "收货地址",
     "usingComponents": {
-        "van-icon": "/static/vant/icon/index"
+        "van-icon": "/static/vant/icon/index",
+        "van-divider": "/static/vant/divider/index"
     }
 }
