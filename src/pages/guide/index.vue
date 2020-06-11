@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div class="main">
+     <div class="search">
+        <van-search placeholder="请输入搜索关键词" @click="handleSearch" shape="round" placeholder-style="text-align: center"></van-search>
+      </div>
     <div class="list">
       <block v-for="(item, index) in addressList" :key="index">
         <div class="address">
@@ -74,6 +77,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import '../../style/base.less';
 .list{
   margin-top: 10rpx;
   padding-bottom: 100rpx;

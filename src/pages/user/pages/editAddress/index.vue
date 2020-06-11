@@ -5,7 +5,7 @@
         <div class="comment avg">
             <van-field
               name="receiverName"
-              :value="receiverName"
+              :value="detail.receiverName"
               clearable
               label="姓名"
               placeholder="请输入姓名"
@@ -13,7 +13,7 @@
             />
             <van-field
               name="telephone"
-              :value="telephone"
+              :value="detail.telephone"
               clearable
               label="电话"
               placeholder="请输入电话"
@@ -43,7 +43,7 @@
             </van-popup>
              <van-field
               name="detailInfo"
-              :value="detailInfo"
+              :value="detail.detailInfo"
               clearable
               label="详细地址"
               placeholder="街道门牌、楼层房间号等信息"
@@ -51,7 +51,7 @@
             />
             <van-field
               name="adCode"
-              :value="adCode"
+              :value="detail.adCode"
               clearable
               label="邮政编码"
               placeholder="邮政编码"
@@ -76,12 +76,14 @@ export default {
   data() {
     return {
       edit: false,
-      detail: {},
-      receiverName: 'Tia',
-      telephone: '13345667899',
       area: '',
-      detailInfo: '科技园A栋34号4509',
-      adCode: '100890',
+      detail: {
+        receiverName: '',
+        telephone: '',
+        area: '',
+        detailInfo: '',
+        adCode: '',
+      },
       checked: false,
       show: false,
       citys,
@@ -131,16 +133,27 @@ export default {
       await addAddress(params);
       const tip = this.edit ? "保存成功" : "新增成功";
       this.$message('success', tip);
+      wx.navigateBack({delta: 1})
     },
     handleDelete(){
     }
   },
   async mounted(){
     console.log(this.$root.$mp.query);
-    if (this.$root.$mp.query.id !== undefined){
+    if (this.$root.$mp.query.id){
       this.edit = true;
       const { id } = this.$root.$mp.query;
-      this.detail = await getAddressDetail(id);
+      const res = await getAddressDetail(id);
+      this.detail = res.list[0];
+    } else {
+      this.edit = false;
+      this.detail = {
+        receiverName: '',
+        telephone: '',
+        area: '',
+        detailInfo: '',
+        adCode: '',
+      }
     }
   }
 }

@@ -15,13 +15,13 @@ export default {
     return {
       picUrls: [
         {id: '0', url: '/static/images/sea1.jpg'},
-        {id: '1', url: '/static/images/sea2.jpg'},
+        // {id: '1', url: '/static/images/sea2.jpg'},
         {id: '2', url: '/static/images/sea3.jpg'},
-        {id: '3', url: '/static/images/sea4.jpg'},
+        // {id: '3', url: '/static/images/sea4.jpg'},
         {id: '4', url: '/static/images/sea5.jpg'},
-        {id: '5', url: '/static/images/sea6.jpg'},
-        {id: '6', url: '/static/images/sea7.jpg'},
-        {id: '7', url: '/static/images/sea8.jpg'},
+        // {id: '5', url: '/static/images/sea6.jpg'},
+        // {id: '6', url: '/static/images/sea7.jpg'},
+        // {id: '7', url: '/static/images/sea8.jpg'},
       ],
       category: '',
       id: '',

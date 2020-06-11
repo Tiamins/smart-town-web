@@ -7,6 +7,8 @@
         "van-icon": "/static/vant/icon/index",
         "van-card": "/static/vant/card/index",
         "van-divider": "/static/vant/divider/index",
-        "van-rate": "/static/vant/rate/index"
+        "van-rate": "/static/vant/rate/index",
+        "van-tabs": "/static/vant/tabs/index",
+        "van-tab": "/static/vant/tab/index"
     }
 }

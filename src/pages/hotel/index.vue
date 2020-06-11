@@ -74,12 +74,12 @@ export default {
       startDate: '',
       endDate: '',
       recommendInfo: [
-        {id: '30', name: '东夷客栈', category: 2, type: 1, avgPrice: '100.00', score: '4.5', headIcon: '/static/images/kezhan.jpg'},
-        {id: '10', name: 'Toma酒店', category: 2, type: 2, avgPrice: '120.00', score: '5', headIcon: '/static/images/hotel6.jpeg'},
-        {id: '07', name: '景观酒店', category: 2, type: 3, avgPrice: '100.00', score: '3.5', headIcon: '/static/images/hotel5.jpeg'},
-        {id: '11', name: '假日酒店', category: 1, type: 3, avgPrice: '120.00', score: '3', headIcon: '/static/images/hotel1.jpeg'},
-        {id: '12', name: '如家快捷酒店', category: 1, type: 3, avgPrice: '100.00', score: '4.5', headIcon: '/static/images/hotel4.jpeg'},
-        {id: '20', name: '悦湾大酒店', category: 1, type: 2, avgPrice: '120.00', score: '2.5', headIcon: '/static/images/hotel3.jpeg'},
+        {id: '30', name: '东夷客栈', category: 2, type: "特色客栈", avgPrice: '100.00', score: '4', headIcon: '/static/images/kezhan.jpg'},
+        {id: '10', name: 'Toma酒店', category: 2, type: "ins风格", avgPrice: '780.00', score: '4.5', headIcon: '/static/images/hotel6.jpeg'},
+        {id: '07', name: '景观酒店', category: 2, type: "亲子主题", avgPrice: '100.00', score: '3.5', headIcon: '/static/images/hotel5.jpeg'},
+        {id: '11', name: '假日酒店', category: 1, type: "四星级酒店", avgPrice: '120.00', score: '3', headIcon: '/static/images/hotel1.jpeg'},
+        {id: '12', name: '如家快捷酒店', category: 1, type: "快捷酒店", avgPrice: '100.00', score: '4.5', headIcon: '/static/images/hotel4.jpeg'},
+        {id: '20', name: '悦湾大酒店', category: 1, type: "五星级酒店", avgPrice: '120.00', score: '2.5', headIcon: '/static/images/hotel3.jpeg'},
       ]
     }
   },

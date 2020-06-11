@@ -32,8 +32,8 @@ export default {
         {id: '07', name: '东夷纸画', category: 5, type: "艺术", avgPrice: '58.00', score: '4.5', headIcon: '/static/images/shop3.jpg'},
         {id: '11', name: '流音摄影馆', category: 5, type: "摄影", avgPrice: '200.00', score: '3', headIcon: '/static/images/shop4.jpg'},
         {id: '12', name: '回忆皮影铺', category: 5, type: "艺术", avgPrice: '80.00', score: '4.5', headIcon: '/static/images/shop5.jpg'},
-        {id: '20', name: '东夷老酸奶', category: 5, type: "食物特产", avgPrice: '10.00', score: '2.5', headIcon: '/static/images/shop6.jpg'},
-        {id: '20', name: '繁星灯笼店', category: 5, type: "工艺特产", avgPrice: '20.00', score: '2.5', headIcon: '/static/images/shop7.jpg'},
+        // {id: '20', name: '东夷老酸奶', category: 5, type: "食物特产", avgPrice: '10.00', score: '2.5', headIcon: '/static/images/shop6.jpg'},
+        // {id: '20', name: '繁星灯笼店', category: 5, type: "工艺特产", avgPrice: '20.00', score: '2.5', headIcon: '/static/images/shop7.jpg'},
       ],
     }
   },

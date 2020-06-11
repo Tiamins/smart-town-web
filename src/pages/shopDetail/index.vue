@@ -21,7 +21,6 @@
 
 <script>
 // import { getComments } from '../../services/api.js'
-import { getSpotDetail, getSpotTicket } from '@/services/api.js'
 import brandHeadDetail from '@/components/brandHeadDetail/index.vue'
 import packageList from '@/components/packageList/index.vue'
 import CommentList from '@/components/CommentList.vue'
@@ -31,89 +30,43 @@ export default {
     return {
       category: '',
       id: '',
-      // detail: {id: '30', phone: 13457786283, address: '东夷小镇C岛2号院', name: '牛肉堂', category: 5, type: "食物特产", avgPrice: '60.00', score: '4.5', headIcon: '/static/images/shop1.jpg'},
-      detail: {id: '30', phone: 13457786283, address: '东夷小镇C岛2号院', name: '深夜BBQ', category: 4, type: "烤串", avgPrice: '60.00', score: '4.5', headIcon: '/static/images/cater1.jpg'},
+      detail: {id: '30', phone: 13457786283, address: '东夷小镇C岛2号院', name: '牛肉堂', category: 5, type: "食物特产", avgPrice: '60.00', score: '4.5', headIcon: '/static/images/shop1.jpg'},
+      // detail: {id: '30', phone: 13457786283, address: '东夷小镇C岛2号院', name: '深夜BBQ', category: 4, type: "烤串", avgPrice: '60.00', score: '4.5', headIcon: '/static/images/cater1.jpg'},
       ticketList: [],
-      // packageInfo: [
-      //   { id: '1', 
-      //     name: '原味牛肉棒', 
-      //     soldNum: 100, 
-      //     subInfo: '包邮', 
-      //     category: 4, 
-      //     price: 69,
-      //     value: 90, 
-      //     headIcon: '/static/images/shop11.jpg', 
-      //     validTime: '',
-      //     type: '',
-      //     },
-      //     { id: '2', 
-      //     name: '手撕牛肉', 
-      //     soldNum: 120, 
-      //     subInfo: '包邮', 
-      //     category: 4, 
-      //     price: 119,
-      //     value: 140, 
-      //     headIcon: '/static/images/shop12.jpg', 
-      //     validTime: '',
-      //     type: '',
-      //     },
-      //     { id: '1', 
-      //     name: '麻辣灯影牛肉', 
-      //     soldNum: 57, 
-      //     subInfo: '包邮', 
-      //     category: 4, 
-      //     price: 49,
-      //     value: 8, 
-      //     headIcon: '/static/images/shop13.jpg', 
-      //     validTime: '',
-      //     type: '',
-      //     }
-      // ],
-       packageInfo: [
+      packageInfo: [
         { id: '1', 
-          name: '孜然羊肉', 
-          soldNum: 500, 
-          subInfo: '热卖', 
+          name: '原味牛肉棒', 
+          soldNum: 100, 
+          subInfo: '包邮', 
           category: 4, 
-          price: 19,
-          value: 36, 
-          headIcon: '/static/images/cater11.jpg', 
+          price: 69,
+          value: 90, 
+          headIcon: '/static/images/shop11.jpg', 
           validTime: '',
           type: '',
           },
           { id: '2', 
-          name: '烤鱿鱼', 
-          soldNum: 349, 
-          subInfo: '特色', 
+          name: '手撕牛肉', 
+          soldNum: 120, 
+          subInfo: '包邮', 
           category: 4, 
-          price: 24,
-          value: 40, 
-          headIcon: '/static/images/cater12.jpg', 
+          price: 119,
+          value: 140, 
+          headIcon: '/static/images/shop12.jpg', 
           validTime: '',
           type: '',
           },
           { id: '1', 
-          name: '奥尔良鸡翅', 
-          soldNum: 368, 
-          subInfo: '经典', 
+          name: '麻辣灯影牛肉', 
+          soldNum: 57, 
+          subInfo: '包邮', 
           category: 4, 
-          price: 19,
-          value: 28, 
-          headIcon: '/static/images/cater13.jpg', 
+          price: 49,
+          value: 8, 
+          headIcon: '/static/images/shop13.jpg', 
           validTime: '',
           type: '',
-          },
-          //  { id: '1', 
-          // name: '蒜蓉粉丝扇贝', 
-          // soldNum: 135, 
-          // subInfo: '美味', 
-          // category: 4, 
-          // price: 79,
-          // value: 100, 
-          // headIcon: '/static/images/cater14.jpg', 
-          // validTime: '',
-          // type: '',
-          // }
+          }
       ],
       commentList: [
         {
@@ -203,40 +156,6 @@ export default {
   },
 
   methods: {
-    async getSpotInfo(id){
-      const res = await getSpotDetail(id);
-      const temp = res.list[0];
-      this.detail = {
-        id: temp.spotId,
-        score: 4.5,
-        name: temp.spotName,
-        headIcon: temp.spotPic,
-        category: 0,
-        address: temp.spotAddress,
-        type: temp.spotType,
-        avgPrice: temp.spotAvgPrice,
-        phone: 13457786283,
-      }
-    },
-    async getSpotTicketInfo(id){
-      const res = await getSpotTicket(id);
-      this.ticketList = res.list.map((item) => {
-        const temp = {
-          id: item.ticketId, 
-          name: item.ticketName, 
-          soldNum: item.ticketSoldCount, 
-          subInfo: '免费取消', 
-          category: 0, 
-          price: item.ticketPrice,
-          value: item.ticketOriginPrice, 
-          headIcon: '', 
-          validTime: item.ticketAdmissionTime,
-          type: item.ticketType,
-          };
-          return temp;
-      });
-      this.packageInfo = this.ticketList;
-    }
 
   },
 
@@ -245,11 +164,6 @@ export default {
     const { category, id } = this.$root.$mp.query;
     this.category = category;
     this.id = id;
-    console.log(category == 0);
-    if (category == 0){
-      this.getSpotInfo(id);
-      this.getSpotTicketInfo(id);
-    }
   }
 }
 </script>

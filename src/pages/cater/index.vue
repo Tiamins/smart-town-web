@@ -1,5 +1,14 @@
 <template>
   <div class="wrap">
+    <div class="cater-type">
+      <van-tabs swipe-threshold="4" color="#409EFF" @click="onClick" swipeable="true">
+        <van-tab name="0" title="全部"></van-tab>
+        <van-tab name="1" title="团队"></van-tab>
+        <van-tab name="2" title="家庭"></van-tab>
+        <van-tab name="3" title="单人"></van-tab>
+        <van-tab name="4" title="闺蜜"></van-tab>
+      </van-tabs>
+    </div>
     <div class="main">
        <div class="search">
         <van-search placeholder="请输入搜索关键词" @click="handleSearch" shape="round" placeholder-style="text-align: center"></van-search>
@@ -32,8 +41,8 @@ export default {
         {id: '07', name: '海鲜小笼包店', category: 4, type: "主食", avgPrice: '26.00', score: '4.5', headIcon: '/static/images/cater3.jpg'},
         {id: '11', name: '鸭血粉丝铺', category: 4, type: "小吃", avgPrice: '20.00', score: '3', headIcon: '/static/images/cater4.jpg'},
         {id: '12', name: '花甲粉丝老店', category: 4, type: "小吃", avgPrice: '30.00', score: '4.5', headIcon: '/static/images/cater5.jpg'},
-        {id: '20', name: '麻辣串一串', category: 4, type: "小吃", avgPrice: '15.00', score: '2.5', headIcon: '/static/images/cater6.jpg'},
-        {id: '20', name: '东夷臭豆腐', category: 4, type: "小吃", avgPrice: '10.00', score: '2.5', headIcon: '/static/images/cater7.jpg'},
+        // {id: '20', name: '麻辣串一串', category: 4, type: "小吃", avgPrice: '15.00', score: '2.5', headIcon: '/static/images/cater6.jpg'},
+        // {id: '20', name: '东夷臭豆腐', category: 4, type: "小吃", avgPrice: '10.00', score: '2.5', headIcon: '/static/images/cater7.jpg'},
       ],
     }
   },

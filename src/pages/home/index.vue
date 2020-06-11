@@ -82,12 +82,12 @@ export default {
         {type: 'new', color: '#efefef', src: '/static/images/beach1.jpeg', url: '../hotel/main'},
       ],
       recommendInfo: [
-        {id: '30', name: '东夷客栈', category: 2, type: 1, avgPrice: '100.00', score: '4.5', headIcon: '/static/images/kezhan.jpg'},
-        {id: '10', name: 'Tomacado花厨Tomacado花厨Tomacado花厨Tomacado花厨Tomacado花厨', category: 4, type: 2, avgPrice: '120.00', score: '3.5', headIcon: '/static/images/westfood.jpeg'},
-        {id: '07', name: '东夷海洋馆', category: 0, type: 1, avgPrice: '100.00', score: '4.5', headIcon: '/static/images/sea1.jpg'},
-        {id: '11', name: '胖哥俩蟹肉煲', category: 4, type: 0, avgPrice: '120.00', score: '3', headIcon: '/static/images/pangfood.jpg'},
-        {id: '12', name: '宽板凳火锅', category: 4, type: 3, avgPrice: '100.00', score: '4.5', headIcon: '/static/images/hotpot.jpg'},
-        {id: '20', name: '悦湾大酒店', category: 2, type: 1, avgPrice: '120.00', score: '2.5', headIcon: '/static/images/hotel3.jpeg'},
+        {id: '30', name: '东夷客栈', category: 2, type: "民宿", avgPrice: '100.00', score: '4.5', headIcon: '/static/images/kezhan.jpg'},
+        // {id: '10', name: 'Tomacado花厨Tomacado花厨Tomacado花厨Tomacado花厨Tomacado花厨', category: 4, type: 2, avgPrice: '120.00', score: '3.5', headIcon: '/static/images/westfood.jpeg'},
+        {id: '07', name: '东夷海洋馆', category: 0, type: "展馆", avgPrice: '100.00', score: '4.5', headIcon: '/static/images/sea1.jpg'},
+        {id: '11', name: '胖哥俩蟹肉煲', category: 4, type: "美食", avgPrice: '120.00', score: '3', headIcon: '/static/images/pangfood.jpg'},
+        {id: '12', name: '宽板凳火锅', category: 4, type: "美食", avgPrice: '100.00', score: '4.5', headIcon: '/static/images/hotpot.jpg'},
+        {id: '20', name: '悦湾大酒店', category: 2, type: "酒店", avgPrice: '120.00', score: '2.5', headIcon: '/static/images/hotel3.jpeg'},
       ]
     }
   },
@@ -113,7 +113,9 @@ export default {
   //   }
   console.log("state:", store.state)
   },
-  
+   onShareAppMessage: function () {
+
+  },
   methods: {
     handleSearch() {
       let url = "../search/main?type=home";

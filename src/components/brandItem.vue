@@ -36,11 +36,24 @@ export default {
   methods: {
     getDetail(category, id) {
       console.log("getdetail")
-      // if (category === 0 || category === 1){
+       
+      if (category === 5){
         wx.navigateTo({
+          url: `/pages/shopDetail/main?category=${category}&id=${id}`,
+        })
+      } else if (category === 4){
+         wx.navigateTo({
+          url: `/pages/caterDetail/main?category=${category}&id=${id}`,
+        })
+      } else if (category === 1 || category === 2){
+         wx.navigateTo({
+          url: `/pages/hotelDetail/main?category=${category}&id=${id}`,
+        })
+      } else {
+         wx.navigateTo({
           url: `/pages/brandDetail/main?category=${category}&id=${id}`,
         })
-      // }
+      }
     }
   }
  

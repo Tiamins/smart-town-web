@@ -1,30 +1,33 @@
 <template>
-  <div>
+  <div class="main">
+     <div class="search">
+        <van-search placeholder="请输入搜索关键词" @click="handleSearch" shape="round" placeholder-style="text-align: center"></van-search>
+      </div>
     <div class="list">
       <block v-for="(item, index) in addressList" :key="index">
         <div class="address">
-          <div v-if="item.select === true" class="select">
+          <!-- <div v-if="item.select === true" class="select">
             <van-icon name="checked" color="#409EFF"/>
-          </div>
+          </div> -->
           <div class="main">
             <div class="info basic">
               <div class="receiver">{{item.receiverName}} {{item.telephone}}</div>
-              <div :class="defaultClass[item.isDefault]">默认</div>
+              <!-- <div :class="defaultClass[item.isDefault]">默认</div> -->
             </div>
             <div class="info detail">{{item.province}}{{item.city}}{{item.district}}{{item.detailInfo}}</div>
           </div>
-          <div class="edit" @click="handleNav('edit', item.addressId)">
-            <van-icon name="edit" color="#409eff"/>
+          <div class="edit">
+            <van-icon name="star-o" color="#409eff"/>
           </div>
         </div>
         <van-divider />
       </block>
     </div>
-    <div class="add" @click="handleNav('add')">
+    <div class="add">
       <div class="icon">
         <van-icon name="add-o" color="#409EFF" />
       </div>
-      <div class="desc">新增地址</div>
+      <div class="desc">发表攻略</div>
     </div>
   </div>
 </template>
@@ -35,9 +38,9 @@ export default {
     return {
       addressListInfo: {},
       addressList: [
-        {addressId: 0, select: true, receiverName: 'Tia', telephone: '18822334567', province: '浙江省', city: '杭州市', district: '西湖区', detailInfo: '龙井路1号', isDefault: 1},
-        {addressId: 1, select: false, receiverName: 'Troye', telephone: '18822334567', province: '北京', city: '北京市', district: '海淀区', detailInfo: '西土城路10号', isDefault: 0},
-        {addressId: 3, select: false, receiverName: 'Dua', telephone: '18822334567', province: '重庆', city: '重庆市', district: '沙坪坝', detailInfo: '重庆市第八中学', isDefault: 0},
+        {addressId: 0, select: true, receiverName: '情侣五日游', telephone: '', province: '', city: '', district: '', detailInfo: '东夷客栈+水上亲子乐园', isDefault: 1},
+        {addressId: 3, select: false, receiverName: '团队七日游', telephone: '', province: '', city: '', district: '', detailInfo: 'Toma酒店+金沙滩', isDefault: 0},
+        {addressId: 3, select: false, receiverName: '亲子三日游', telephone: '', province: '', city: '', district: '', detailInfo: '东夷客栈+宽板凳火锅+金沙滩', isDefault: 0},
         // {addressId: 4, select: false, receiverName: 'Dua', telephone: '18822334567', province: '重庆', city: '沙坪坝', district: '海淀区', detailInfo: '毛纺路58号小米总参', isDefault: 0},
         // {addressId: 5, select: false, receiverName: 'Dua', telephone: '18822334567', province: '重庆', city: '沙坪坝', district: '海淀区', detailInfo: '毛纺路58号小米总参', isDefault: 0},
         // {addressId: 6, select: false, receiverName: 'Dua', telephone: '18822334567', province: '重庆', city: '沙坪坝', district: '海淀区', detailInfo: '毛纺路58号小米总参', isDefault: 0},
@@ -72,6 +75,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import '../../../../style/base.less';
 .list{
   margin-top: 10rpx;
   padding-bottom: 100rpx;

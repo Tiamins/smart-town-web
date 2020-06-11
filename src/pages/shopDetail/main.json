@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "美食",
+  "navigationBarTitleText": "店家详情",
   "usingComponents": {
       "van-button": "/static/vant/button/index",
       "van-swipe": "/static/vant/swipe-cell/index",
@@ -8,6 +8,9 @@
       "van-card": "/static/vant/card/index",
       "van-divider": "/static/vant/divider/index",
       "van-rate": "/static/vant/rate/index",
+      "van-grid": "/static/vant/grid/index",
+      "van-grid-item": "/static/vant/grid-item/index",
+      "van-cell": "/static/vant/cell/index",
       "van-tabs": "/static/vant/tabs/index",
       "van-tab": "/static/vant/tab/index"
   }

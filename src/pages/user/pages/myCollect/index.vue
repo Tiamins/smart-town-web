@@ -39,9 +39,9 @@ export default {
         {type: 'new', color: '#efefef', src: '/static/images/beach1.jpeg', url: '../hotel/main'},
       ],
       recommendInfo: [
-        {id: '12', name: '宽板凳火锅', category: 4, type: 3, avgPrice: '100.00', score: '4.5', headIcon: '/static/images/hotpot.jpg'},
-        {id: '30', name: '东夷客栈', category: 2, type: 1, avgPrice: '100.00', score: '4.5', headIcon: '/static/images/kezhan.jpg'},
-        {id: '20', name: '悦湾大酒店', category: 2, type: 1, avgPrice: '120.00', score: '2.5', headIcon: '/static/images/hotel3.jpeg'},
+        {id: '12', name: '宽板凳火锅', category: 4, type: "美食", avgPrice: '100.00', score: '4.5', headIcon: '/static/images/hotpot.jpg'},
+        {id: '30', name: '东夷客栈', category: 2, type: "民宿", avgPrice: '100.00', score: '4.5', headIcon: '/static/images/kezhan.jpg'},
+        {id: '20', name: '悦湾大酒店', category: 2, type: "酒店", avgPrice: '120.00', score: '2.5', headIcon: '/static/images/hotel3.jpeg'},
       ]
     }
   },

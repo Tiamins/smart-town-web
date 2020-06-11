@@ -2,7 +2,7 @@
   <div class="wrap">
     <div class="main">
       <div class="info basic">
-        <div class="title">{{ticket.name}}{{ticket.type}}</div>
+        <div class="title">{{ticket.name}}</div>
         <van-divider />
         <div class="valid">
           <div class="title">使用有效期</div>
@@ -56,6 +56,7 @@ export default {
       detail: {},
       ticket: {},
       ticketId: '',
+      params: {},
       item: {
         fullName: '东夷海洋馆成人票',
         validTime: '2020-01-30',
@@ -73,7 +74,7 @@ export default {
         {oid: '0', name: '宽板凳火锅四人套餐', headIcon: '/static/images/hotpot.jpg', totalPrice: '360.00', num: '1', status: 4, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
         {oid: '0', name: '胖哥俩肉蟹煲双人餐', headIcon: '/static/images/pangfood.jpg', totalPrice: '160.00', num: '1', status: 4, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
         {oid: '0', name: 'Toma酒店套房', headIcon: '/static/images/hotel6.jpeg', totalPrice: '700.00', num: '1', status: 1, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
-        {oid: '0', name: 'Tomacado花厨双人晚餐', headIcon: '/static/images/westfood.jpeg', totalPrice: '640.00', num: '1', status: 1, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
+        // {oid: '0', name: 'Tomacado花厨双人晚餐', headIcon: '/static/images/westfood.jpeg', totalPrice: '640.00', num: '1', status: 1, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
       ],
     }
   },
@@ -97,7 +98,8 @@ export default {
       const info = await getTicket(id);
       const item = info.list[0];
       this.ticket = {
-        id: item.ticketId,
+        id: item.id,
+        ticketId: item.ticketId,
         spotId: item.spotId,
         name: item.ticketName, 
         soldNum: item.ticketSoldCount, 
@@ -113,7 +115,7 @@ export default {
     async submitOrderInfo(){
       const {price, ticketId, spotId} = this.ticket;
       const payAmount = this.count * price / 100;
-      const params = {
+      this.params = {
         merchantId: spotId,
         productId: ticketId,
         payAmount: 1,
@@ -123,7 +125,7 @@ export default {
         expressType: '',
         expressNumber: '',
       }
-      const res = await submitOrder(params);
+      const res = await submitOrder(this.params);
       console.log(res.list, typeof res.list);
       const obj = JSON.parse(res.list);
       console.log("obj:", obj);
@@ -139,6 +141,9 @@ export default {
         'paySign': obj.paySign,
         success (res) {
           console.log("res:", res);
+          wx.switchTab({
+            url: '/pages/order/main'
+          })
         },
         fail(res){
           console.log("fail:", res)

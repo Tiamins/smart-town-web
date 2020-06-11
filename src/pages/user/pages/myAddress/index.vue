@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="list">
-      <block v-for="(item, index) in addressList" :key="index">
+      <block v-for="(item, index) in addressListInfo.list" :key="index">
         <div class="address">
           <div v-if="item.select === true" class="select">
             <van-icon name="checked" color="#409EFF"/>
@@ -35,17 +35,9 @@ export default {
     return {
       addressListInfo: {},
       addressList: [
-        {addressId: 0, select: true, receiverName: 'Tia', telephone: '18822334567', province: '浙江省', city: '杭州市', district: '西湖区', detailInfo: '龙井路1号', isDefault: 1},
+        {addressId: 0, select: true, receiverName: 'Tia', telephone: '13345667899', province: '浙江省', city: '杭州市', district: '西湖区', detailInfo: '龙井路1号', isDefault: 1},
         {addressId: 1, select: false, receiverName: 'Troye', telephone: '18822334567', province: '北京', city: '北京市', district: '海淀区', detailInfo: '西土城路10号', isDefault: 0},
         {addressId: 3, select: false, receiverName: 'Dua', telephone: '18822334567', province: '重庆', city: '重庆市', district: '沙坪坝', detailInfo: '重庆市第八中学', isDefault: 0},
-        // {addressId: 4, select: false, receiverName: 'Dua', telephone: '18822334567', province: '重庆', city: '沙坪坝', district: '海淀区', detailInfo: '毛纺路58号小米总参', isDefault: 0},
-        // {addressId: 5, select: false, receiverName: 'Dua', telephone: '18822334567', province: '重庆', city: '沙坪坝', district: '海淀区', detailInfo: '毛纺路58号小米总参', isDefault: 0},
-        // {addressId: 6, select: false, receiverName: 'Dua', telephone: '18822334567', province: '重庆', city: '沙坪坝', district: '海淀区', detailInfo: '毛纺路58号小米总参', isDefault: 0},
-        // {addressId: 7, select: false, receiverName: 'Dua', telephone: '18822334567', province: '重庆', city: '沙坪坝', district: '海淀区', detailInfo: '毛纺路58号小米总参', isDefault: 0},
-        // {addressId: 8, select: false, receiverName: 'Dua', telephone: '18822334567', province: '重庆', city: '沙坪坝', district: '海淀区', detailInfo: '毛纺路58号小米总参', isDefault: 0},
-        // {addressId: 9, select: false, receiverName: 'Dua', telephone: '18822334567', province: '重庆', city: '沙坪坝', district: '海淀区', detailInfo: '毛纺路58号小米总参', isDefault: 0},
-        // {addressId: 10, select: false, receiverName: 'Dua', telephone: '18822334567', province: '重庆', city: '沙坪坝', district: '海淀区', detailInfo: '毛纺路58号小米总参', isDefault: 0},
-        // {addressId: 11, select: false, receiverName: 'Dua', telephone: '18822334567', province: '重庆', city: '沙坪坝', district: '海淀区', detailInfo: '毛纺路58号小米总参', isDefault: 0},
       ],
       defaultClass: {
         0: "not-default",
@@ -64,9 +56,6 @@ export default {
     }
   },
   async mounted (){
-    // console.log(this.$root.$mp.query);
-    // this.select = this.$root.$mp.query;
-    // const userId = 'o4lvx5G9BtxZtIZPk2GPIMd7AhXY';
     this.addressListInfo = await getAddressList();
   }
 }

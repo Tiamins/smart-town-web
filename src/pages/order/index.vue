@@ -12,7 +12,7 @@
         </van-tabs>
       </div>
       <div class="main order-list">
-        <block v-for="(item, index) in orderList" :key="index">
+        <block v-for="(item, index) in orders" :key="index">
           <div class="order-item">
             <div class="order-main" @click="getPackageDetail(item.oid)">
               <div v-if="category !== 6" class="head-icon">
@@ -21,7 +21,7 @@
               <div class="order-info">
                 <div class="info-detail info-name">{{item.name}}</div>
                 <div class="info-detail info-num">数量：{{item.num}}</div>
-                <div class="info-detail info-total">总价：{{item.totalPrice}}元</div>
+                <div class="info-detail info-total">总价：{{item.payAmount}}元</div>
               </div>
             </div>
             <div class="order-tip">
@@ -39,10 +39,13 @@
   </div>
 </template>
 <script>
+import { getOrderList } from '@/services/api.js'
 import { orderType } from '@/components/constants/index'
 export default {
   data(){
     return {
+      orderInfo: {},
+      orders: [],
       orderType,
       orderList: [
         {oid: '0', name: '东夷海洋馆成人票', headIcon: '/static/images/sea4.jpg', totalPrice: '200.00', num: '2', status: 1, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
@@ -51,7 +54,7 @@ export default {
         {oid: '0', name: '宽板凳火锅四人套餐', headIcon: '/static/images/hotpot.jpg', totalPrice: '360.00', num: '1', status: 4, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
         {oid: '0', name: '胖哥俩肉蟹煲双人餐', headIcon: '/static/images/pangfood.jpg', totalPrice: '160.00', num: '1', status: 2, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
         {oid: '0', name: 'Toma酒店套房', headIcon: '/static/images/hotel6.jpeg', totalPrice: '700.00', num: '1', status: 6, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
-        {oid: '0', name: 'Tomacado花厨双人晚餐', headIcon: '/static/images/westfood.jpeg', totalPrice: '640.00', num: '1', status: 1, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
+        // {oid: '0', name: 'Tomacado花厨双人晚餐', headIcon: '/static/images/westfood.jpeg', totalPrice: '640.00', num: '1', status: 1, payId: '4578983493', createTime: '2019-06-20', validTime: '2020-06-20'},
       ],
     }
   },
@@ -63,6 +66,18 @@ export default {
     onClick(e){
       console.log(e)
     }
+  },
+  async mounted(){
+     this.orderInfo = await getOrderList();
+     this.orders = this.orderInfo.list.map((item) => {
+       item.headIcon = 'http://img4.imgtn.bdimg.com/it/u=2546253083,3820155243&fm=26&gp=0.jpg';
+       item.payAmount = (parseInt(item.payAmount)) / 100;
+       item.name = item.bill;
+       item.num = 1;
+       item.status = 5;
+       item.payId = item.outTradeNo; 
+       return item;
+     })
   }
 }
 </script>

@@ -16,13 +16,16 @@
         "pages/cater/main",
         "pages/addressMap/main",
         "pages/orderDetail/main",
+        "pages/shopDetail/main",
+        "pages/caterDetail/main",
+        "pages/hotelDetail/main",
         "pages/makeTicketOrder/main",
         "pages/hotel/main",
         "pages/logs/main",
         "pages/counter/main"
 
     ],
-    "subpackages": [
+    "subPackages": [
         {
             "root": "pages/user/pages/",
             "pages": [
