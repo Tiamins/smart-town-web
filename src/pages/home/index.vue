@@ -55,6 +55,9 @@
 </template>
 
 <script>
+import {
+  getMerchants,
+} from "@/services/api.js";
 import brandItem from '../../components/brandItem.vue'
 import { loginUrl } from '../../components/constants/index'
 import store from '@/utils/store'
@@ -83,7 +86,6 @@ export default {
       ],
       recommendInfo: [
         {id: '30', name: '东夷客栈', category: 2, type: "民宿", avgPrice: '100.00', score: '4.5', headIcon: '/static/images/kezhan.jpg'},
-        // {id: '10', name: 'Tomacado花厨Tomacado花厨Tomacado花厨Tomacado花厨Tomacado花厨', category: 4, type: 2, avgPrice: '120.00', score: '3.5', headIcon: '/static/images/westfood.jpeg'},
         {id: '07', name: '东夷海洋馆', category: 0, type: "展馆", avgPrice: '100.00', score: '4.5', headIcon: '/static/images/sea1.jpg'},
         {id: '11', name: '胖哥俩蟹肉煲', category: 4, type: "美食", avgPrice: '120.00', score: '3', headIcon: '/static/images/pangfood.jpg'},
         {id: '12', name: '宽板凳火锅', category: 4, type: "美食", avgPrice: '100.00', score: '4.5', headIcon: '/static/images/hotpot.jpg'},
@@ -95,23 +97,21 @@ export default {
     brandItem
   },
 
-  mounted () {
-  //  const token = store.state.token;
-  // console.log("created");
-  // const token = " ";
-  //  console.log("hometoken:", token)
-  //   if (token){
-  //     wx.checkSession({
-  //       success: () => {
-  //       },
-  //       fail: () => {
-  //         this.$openWin(loginUrl)
-  //       }
-  //     })
-  //   } else {
-  //     this.$openWin(loginUrl)
-  //   }
-  console.log("state:", store.state)
+  async mounted () {
+    const res = await getMerchants();
+    this.recommendInfo = res.map((item) => {
+      const temp = {
+        id: item.merchantId,
+        score: 4.5,
+        name: item.name,
+        headIcon: item.headIcon,
+        category: item.type,
+        type: item.type,
+        avgPrice: 100,
+        phone: item.tel
+      };
+      return temp;
+    })
   },
    onShareAppMessage: function () {
 

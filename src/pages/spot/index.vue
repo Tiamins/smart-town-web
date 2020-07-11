@@ -58,11 +58,10 @@ export default {
 
   async mounted() {
     const spot = await getSpotList(); 
-    this.spotList = spot.list.map((item, index) => {
+    this.spotList = spot.map((item, index) => {
       const temp = {
         id: item.spotId,
-        // score: (Math.floor(Math.random() * 10)) / 2,
-        score: index == 0 ? 4.5 : index + 1.5,
+        score: 4,
         name: item.spotName,
         headIcon: item.spotPic,
         category: 0,

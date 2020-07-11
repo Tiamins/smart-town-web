@@ -56,7 +56,9 @@ export default {
                       // 用户信息
                       const { encryptedData, iv } = res2; 
                       const response = await userLogin({ code, encryptedData, iv });
-                      store.commit("updateToken", response.list);
+                      console.log("resp:", response);
+                      wx.setStorageSync("token", response);
+                      store.commit("updateToken", response);
                       // 上传/更新用户信息  
                       const { nickName, avatarUrl, country, province, city, gender } = res2.userInfo;
                       const resUserInfo = await updateUserInfo({nickName, avatarUrl, country, province, city, gender});
